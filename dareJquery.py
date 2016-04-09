@@ -20,8 +20,8 @@ if sys.getdefaultencoding() != defaultencoding:
 BASIC_URL = "http://202.120.165.79:8800/Default.aspx"
 QUERY_URL1 = "http://202.120.165.79:8801/Default.aspx"
 QUERY_URL2 = "http://202.120.165.79:8802/Default.aspx"
-INPOS_URL = "//Users//hongjiayong//PycharmProjects//电费查询//information.json"
-#INPOS_URL = "//root//fareQuery//information.json"
+INPOS_URL = ""  # 自行添加用户json文件地址
+
 
 queryData1={
     '__VIEWSTATE':'',
@@ -137,11 +137,11 @@ def main():
     except:
         print time.strftime( '%Y-%m-%d %X', time.localtime())
         print 'error'
-        sendEmail('764796124@qq.com', '-1')
+        # 发送邮件给管理员
+        sendEmail('', '-1')
 
 if __name__ == '__main__':
     while True:
-        #print time.strftime( '%Y-%m-%d %X', time.localtime())
         main()
         print time.strftime( '%Y-%m-%d %X', time.localtime())
         time.sleep(60 * 60 * 30)
