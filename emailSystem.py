@@ -4,8 +4,9 @@ from email.header import Header
 from email.mime.text import MIMEText
 from email.utils import formataddr, parseaddr
 
-EMAIL_ADDRESS = 'tj_island@163.com'
-EMAIL_PASSWORD = 'ying1997'
+# email地址和smtp授权密码 一般不是你的邮箱密码
+EMAIL_ADDRESS = ''
+EMAIL_PASSWORD = ''
 
 def _format_addr(s):
     name, addr = parseaddr(s)
@@ -13,14 +14,15 @@ def _format_addr(s):
 
 def sendEmail(toAddr, fare = '0'):
     msg = MIMEText('<h1>充电费啦!!!</h1><br><p>还有<strong>' + fare + '</strong>' + '元</p><br>', 'html', 'utf-8')
-    msg['From'] = _format_addr(u'island <tj_island@163.com>')
+    # From要和你的邮箱对上
+    msg['From'] = _format_addr(u'island <>')
     msg['To'] = _format_addr(u'傻鸡们 <囧>')
     msg['Subject'] = Header(u'充电费啦!!!!!', 'utf-8').encode()
 
     server = smtplib.SMTP('smtp.163.com', 25)
     server.set_debuglevel(1)
     server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-    server.sendmail('From: tj_island@163.com', [toAddr], msg.as_string())
+    # 要对上发件箱
+    server.sendmail('From: ', [toAddr], msg.as_string())
     server.quit()
 
-# sendEmail('764796124@qq.com')
